@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { addDoc, collection, getFirestore } from "firebase/firestore";
+import { collection, getFirestore } from "firebase/firestore";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -22,11 +22,16 @@ const db = getFirestore(app);
 
 export { db };
 
-export const saveFormData = async (data) => {
+import { doc, setDoc } from "firebase/firestore";
+
+export const saveFormData = async (values) => {
   try {
-    const docRef = await addDoc(collection(db, "formData"), data);
-    console.log("docRef id: " + docRef.id);
+    const docRef = doc(collection(db, "formData"));
+    console.log("above await docRef: " + docRef + " values: " + values);
+    await setDoc(docRef, values);
+    console.log("Document written  with ID: ", docRef.id);
   } catch (e) {
-    console.error("Failed adding doc: " + e + ": " + e.message);
+    console.error("Error adding document: ", e);
+    throw e; // Rethrow the error so it can be caught by the calling function
   }
 };

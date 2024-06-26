@@ -25,23 +25,24 @@ export default function ValidationForm() {
     privacy_policy: Yup.boolean().oneOf([true], "Required"),
   });
 
-  const onSubmit = async (values, { setSubmitting, resetForm }) => {
+  const onSubmit = async (values, { setSubmitting, resetForm, setErrors }) => {
     try {
       console.log("Form data", values);
       await saveFormData(values);
-    } catch (e) {
-      console.error("Error saving form data}, " + e.message);
+      resetForm();
+    } catch (error) {
+      console.error("Error saving form data", error);
+      setErrors({ submit: "Failed to save form data. Please try again." });
+    } finally {
+      setSubmitting(false);
     }
-    setSubmitting(false);
-    resetForm();
   };
-
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">Registration Form</h1>
       <Formik
         initialValues={initialValues}
-        validationSchema={validationSchema}
+        // validationSchema={validationSchema}
         onSubmit={onSubmit}
       >
         {({ isSubmitting }) => (
