@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Inter } from "next/font/google";
-import ValidationForm from "../conponents/form";
+import ValidationForm from "../components/form";
 
 const inter = Inter({ subsets: ["latin"] });
 

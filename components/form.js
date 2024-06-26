@@ -38,7 +38,7 @@ export default function ValidationForm() {
     }
   };
   return (
-    <div className="container mx-auto p-4">
+    <div className=" bg-slate-100 p-6 rounded-lg shadow-md w-full max-w-fit">
       <h1 className="text-2xl font-bold mb-4">Registration Form</h1>
       <Formik
         initialValues={initialValues}
@@ -168,14 +168,14 @@ export default function ValidationForm() {
             <div>
               <button
                 type="submit"
-                className="bg-blue-500 text-white rounded p-2"
+                className="bg-blue-500 hover:bg-blue-600 active:bg-blue-700 text-white rounded-md p-2"
                 disabled={isSubmitting}
               >
                 {isSubmitting ? "Submitting..." : "Submit"}
               </button>
               <button
                 type="reset"
-                className="ml-4 bg-gray-500 text-white rounded p-2"
+                className="ml-4 bg-gray-500 hover:bg-gray-600 text-white rounded-md p-2"
               >
                 Reset
               </button>
