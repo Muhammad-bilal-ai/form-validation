@@ -26,8 +26,12 @@ export default function ValidationForm() {
   });
 
   const onSubmit = async (values, { setSubmitting, resetForm }) => {
-    console.log("Form data", values);
-    await saveFormData(values);
+    try {
+      console.log("Form data", values);
+      await saveFormData(values);
+    } catch (e) {
+      console.error("Error saving form data}, " + e.message);
+    }
     setSubmitting(false);
     resetForm();
   };
@@ -50,6 +54,7 @@ export default function ValidationForm() {
                 Name
               </label>
               <Field
+                id="name"
                 name="name"
                 type="text"
                 placeholder="Name"
@@ -69,6 +74,7 @@ export default function ValidationForm() {
                 Email
               </label>
               <Field
+                id="email"
                 name="email"
                 type="email"
                 placeholder="Email"
@@ -88,6 +94,7 @@ export default function ValidationForm() {
                 Password
               </label>
               <Field
+                id="password"
                 name="password"
                 type="password"
                 placeholder="Password"
@@ -107,6 +114,7 @@ export default function ValidationForm() {
                 Confirm Password
               </label>
               <Field
+                id="confirm_password"
                 name="confirm_password"
                 type="password"
                 placeholder="Confirm Password"
@@ -126,6 +134,7 @@ export default function ValidationForm() {
                 Terms and Conditions
               </label>
               <Field
+                id="terms_and_conditions"
                 name="terms_and_conditions"
                 type="checkbox"
                 className="mt-1"
@@ -143,7 +152,12 @@ export default function ValidationForm() {
               >
                 Privacy Policy
               </label>
-              <Field name="privacy_policy" type="checkbox" className="mt-1" />
+              <Field
+                id="privacy_policy"
+                name="privacy_policy"
+                type="checkbox"
+                className="mt-1"
+              />
               <ErrorMessage
                 name="privacy_policy"
                 component="div"
