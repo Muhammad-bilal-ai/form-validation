@@ -42,7 +42,7 @@ export default function ValidationForm() {
       <h1 className="text-2xl font-bold mb-4">Registration Form</h1>
       <Formik
         initialValues={initialValues}
-        // validationSchema={validationSchema}
+        validationSchema={validationSchema}
         onSubmit={onSubmit}
       >
         {({ isSubmitting }) => (
